@@ -23,6 +23,10 @@ cron.schedule("0 12 * * *", () => {
   requestFlowService();
 });
 
+cron.schedule("30 12 * * *", () => {
+  requestFlowService();
+});
+
 cron.schedule("0 14 * * *", () => {
   requestFlowService();
 });
