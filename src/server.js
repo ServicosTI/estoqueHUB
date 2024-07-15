@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 const { router } = require("./router/routes");
 const { requestFlowService } = require("./service/requestFlowService");
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
@@ -20,10 +20,6 @@ cron.schedule("0 10 * * *", () => {
 });
 
 cron.schedule("0 12 * * *", () => {
-  requestFlowService();
-});
-
-cron.schedule("34 12 * * *", () => {
   requestFlowService();
 });
 

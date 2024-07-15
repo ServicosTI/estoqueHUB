@@ -70,13 +70,13 @@ const requestFlowService = async () => {
     const dataCreateProducts = {
       properties: {
         hs_price_brl: 0,
-        hs_sku: id,
+        hs_sku: nome,
         name: nome,
         description: tipoNome,
         fabricante,
         quantidade: quantity,
         tipo_de_produto: tipoNome,
-        id_tipo_grupo_de_produto: idTipoGrupoProduto,
+        id_tipo_grupo_de_produto: id,
         modelo_texto: modelo,
       },
     };
@@ -89,7 +89,8 @@ const requestFlowService = async () => {
         return response.data;
       })
       .catch((erro) => erro.response.data.message);
-    console.log(responseProducts);
+    console.log("Log ", responseProducts);
+
     if (responseProducts.includes("already has that value.")) {
       const regex = /(\d+)\s+already has that value\./;
       const match = responseProducts.match(regex);

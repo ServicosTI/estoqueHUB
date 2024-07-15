@@ -3,6 +3,6 @@ const { requestFlowController } = require("../controller/requesFlowController");
 
 const router = Router();
 
-// router.post("/request-products", requestFlowController);
+router.post("/request-products", requestFlowController);
 
 module.exports = { router };
