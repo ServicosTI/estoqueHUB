@@ -76,7 +76,7 @@ const requestFlowService = async () => {
         fabricante,
         quantidade: quantity,
         tipo_de_produto: tipoNome,
-        id_tipo_grupo_de_produto: id,
+        id_tipo_grupo_de_produto: idTipoGrupoProduto,
         modelo_texto: modelo,
       },
     };
@@ -91,17 +91,19 @@ const requestFlowService = async () => {
       .catch((erro) => erro.response.data.message);
     console.log("Log ", responseProducts);
 
-    if (responseProducts.includes("already has that value.")) {
-      const regex = /(\d+)\s+already has that value\./;
-      const match = responseProducts.match(regex);
-      const productId = match[1];
-      await baseApi
-        .patch(`crm/v3/objects/products/${productId}`, dataCreateProducts)
-        .then((response) => {
-          console.log("Produto Atualizado com Sucesso!", response.data);
-          return response.data;
-        })
-        .catch((erro) => erro.response.message);
+    if (!responseProducts.id) {
+      if (responseProducts.includes("already has that value.")) {
+        const regex = /(\d+)\s+already has that value\./;
+        const match = responseProducts.match(regex);
+        const productId = match[1];
+        await baseApi
+          .patch(`crm/v3/objects/products/${productId}`, dataCreateProducts)
+          .then((response) => {
+            console.log("Produto Atualizado com Sucesso!", response.data);
+            return response.data;
+          })
+          .catch((erro) => erro.response.message);
+      }
     }
   }
 
