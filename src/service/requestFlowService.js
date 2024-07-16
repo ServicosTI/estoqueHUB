@@ -78,6 +78,7 @@ const requestFlowService = async () => {
         tipo_de_produto: tipoNome,
         id_tipo_grupo_de_produto: idTipoGrupoProduto,
         modelo_texto: modelo,
+        id_do_grupo: id,
       },
     };
     console.log(dataCreateProducts);
